@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  app:
+  api:
     build:
       context: .
       dockerfile: Dockerfile
@@ -12,7 +12,6 @@ services:
     volumes:
       - .:/app
       - gem_cache:/usr/local/bundle/gems
-      - node_modules:/app/node_modules
     env_file: .env
     environment:
       RAILS_ENV: development
@@ -23,7 +22,15 @@ services:
       - db_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
+  frontend:
+    build: ./app/frontend
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./app/frontend:/frontend
+      - front_node_modules:/frontend/node_modules
+
 volumes:
   gem_cache:
-  node_modules:
   db_data:
+  front_node_modules:
