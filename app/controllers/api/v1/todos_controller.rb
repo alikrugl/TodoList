@@ -10,7 +10,7 @@ module Api
 
         if limit.present?
           limit = limit.to_i
-          @todos = @todos.last(:_limit)
+          @todos = @todos.last(limit)
         end
 
         render json: @todos.reverse
@@ -26,7 +26,7 @@ module Api
         @todo = Todo.new(todo_params)
 
         if @todo.save
-          render json: @todo, status: :created, location: @todo
+          render json: @todo, status: :created, location: api_v1_todos_path(@todo)
         else
           render json: @todo.errors, status: :unprocessable_entity
         end
