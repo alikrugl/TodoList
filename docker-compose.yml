@@ -1,10 +1,8 @@
-version: '3.4'
+version: '3.8'
 
 services:
   api:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     depends_on:
       - database
     ports:
@@ -15,6 +13,9 @@ services:
     env_file: .env
     environment:
       RAILS_ENV: development
+      DATABASE_USER: postgres
+      DATABASE_HOST: database
+      
 
   database:
     image: postgres:12.1

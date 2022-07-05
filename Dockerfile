@@ -1,27 +1,12 @@
-FROM ruby:3.1.2-alpine
+FROM ruby:3.1.2
 
-RUN apk add --update --virtual \
-    runtime-deps \
-    build-base \
-    libxml2-dev \
-    libxslt-dev \
-    libpq-dev \
-    pkgconfig \
-    postgresql-dev \
-    postgresql-client \
-    nodejs \
-    yarn \
-    libffi-dev \
-    git \
-    tzdata
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev postgresql-client nodejs
 
 WORKDIR /app
 COPY . /app/
 
-ENV BUNDLE_PATH /gems
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
 RUN bundle install
-RUN yarn install
 
-ENTRYPOINT [ "bin/rails" ]
-CMD ["s", "-b", "0.0.0.0"]
-EXPOSE 3000
+ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
