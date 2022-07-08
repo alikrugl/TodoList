@@ -28,7 +28,7 @@ export default {
 <style>
 body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", "Arial", sans-serif;
-  line-height: 1.6;
+  line-height: 1.9;
   background-color: #e8f7f0;
 }
 

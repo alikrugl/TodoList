@@ -14,6 +14,11 @@
         class="todoItem"
         v-bind:class="{ 'is-complete': todo.completed }"
       >
+        <i
+          v-if="todo.completed"
+          @click="checkMarkSelect(todo)"
+          class="fa fa-solid fa-check-double"
+        ></i>
         {{ todo.title }}
         <i @click="deleteTodo(todo.id)" class="fas fa-trash-alt"></i>
       </div>
@@ -34,6 +39,16 @@ export default {
         completed: !currentTodo.completed,
       };
       this.updateTodo(updatedTodo);
+      event.preventDefault();
+    },
+    checkMarkSelect(currentTodo) {
+      const updatedTodo = {
+        id: currentTodo.id,
+        title: currentTodo.title,
+        completed: !currentTodo.completed,
+      };
+      this.updateTodo(updatedTodo);
+      event.preventDefault();
     },
   },
   computed: {
@@ -62,10 +77,16 @@ export default {
 }
 i {
   position: absolute;
-  bottom: 10px;
-  right: 10px;
   color: #fff;
   cursor: pointer;
+}
+i.fa {
+  top: 10px;
+  left: 10px;
+}
+i.fas {
+  bottom: 10px;
+  right: 10px;
 }
 .legend {
   display: flex;
@@ -76,7 +97,7 @@ i {
   display: inline-block;
   width: 10px;
   height: 10px;
-  background: #35495e;
+  background: #545b63;
 }
 .incomplete-box {
   display: inline-block;
@@ -85,8 +106,9 @@ i {
   background: #41b882;
 }
 .is-complete {
-  background: #35495e;
+  background: #545b63;
   color: #fff;
+  text-decoration: line-through;
 }
 @media (max-width: 500px) {
   .todoItems {

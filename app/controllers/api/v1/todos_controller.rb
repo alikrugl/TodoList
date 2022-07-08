@@ -5,15 +5,11 @@ module Api
 
       # GET /todos
       def index
-        @todos = Todo.all
-        limit = params[:_limit]
+        @todos = Todo.order(:completed, updated_at: :desc)
+        limit = params[:_limit]&.to_i
+        @todos = @todos.first(limit) if limit.present?
 
-        if limit.present?
-          limit = limit.to_i
-          @todos = @todos.last(limit)
-        end
-
-        render json: @todos.reverse
+        render json: @todos
       end
 
       # GET /todos/1
