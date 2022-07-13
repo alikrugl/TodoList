@@ -2,9 +2,9 @@
 
 Rails.application.routes.draw do
   post 'refresh', to: 'refresh#create'
-  post 'signin', to: 'signin#create'
-  post 'signup', to: 'signup#create'
-  delete 'signin', to: 'signin#destroy'
+  post 'signin', to: 'sessions#create'
+  post 'signup', to: 'users#create'
+  delete 'signin', to: 'sessions#destroy'
 
   namespace :api do
     namespace :v1 do

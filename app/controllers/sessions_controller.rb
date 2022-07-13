@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
-class SignupController < ApplicationController
+class SessionsController < ApplicationController
+  before_action :authorize_access_request!, only: [:destroy]
+
   def create
-    user = User.new(user_params)
-    if user.save
+    user = User.find_by!(email: params[:email])
+    if user.authenticate(params[:password])
       payload = { user_id: user.id }
       session = JWTSessions::Session.new(payload:, refresh_by_access_allowed: true)
       tokens = session.login
@@ -14,13 +16,19 @@ class SignupController < ApplicationController
                           secure: Rails.env.production?)
       render json: { csrf: tokens[:csrf] }
     else
-      render json: { error: user.errors.full_messages.join(' ') }, status: :unprocessable_entity
+      not_authorized
     end
+  end
+
+  def destroy
+    session = JWTSessions::Session.new(payload:)
+    session.flush_by_access_payload
+    render json: :ok
   end
 
   private
 
-  def user_params
-    params.permit(:email, :password, :password_confirmation)
+  def not_found
+    render json: { error: 'Cannot find such email/password combination' }, status: :not_found
   end
 end

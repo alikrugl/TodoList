@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe SignupController, type: :controller do
+RSpec.describe UsersController, type: :controller do
   describe 'POST #create' do
     let(:password) { FFaker::Internet.password }
     let(:user_params) { { email: FFaker::Internet.email, password:, password_confirmation: password } }
