@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 module Api
   module V1
     class TodosController < ApplicationController
-      before_action :set_todo, only: %i[ show update destroy ]
+      before_action :set_todo, only: %i[show update destroy]
 
       # GET /todos
       def index
@@ -43,6 +45,7 @@ module Api
       end
 
       private
+
       # Use callbacks to share common setup or constraints between actions.
       def set_todo
         @todo = Todo.find(params[:id])
@@ -55,4 +58,3 @@ module Api
     end
   end
 end
-
