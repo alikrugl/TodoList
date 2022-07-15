@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   def login
     user = User.find_by!(email: params[:email])
     if user.authenticate(params[:password])
-      JWTSessions.access_exp_time = 1.minute.to_i
+      JWTSessions.access_exp_time = 8.hours.to_i
       JWTSessions.refresh_exp_time = 1.week.to_i
 
       payload = { user_id: user.id }
