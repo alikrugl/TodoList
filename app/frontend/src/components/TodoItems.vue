@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="sign-out float-right">
+      <label @click="signOut">Sign out</label>
+    </div>
     <h3>Todos</h3>
     <div class="legend">
       <span>Double click to mark as complete.</span>
@@ -49,6 +52,16 @@ export default {
       };
       this.updateTodo(updatedTodo);
       event.preventDefault();
+    },
+    signOut() {
+      this.secured
+        .get("/logout")
+        .then(() => {
+          delete localStorage.csrf;
+          delete localStorage.signedIn;
+          this.$router.replace("/signin");
+        })
+        .catch((error) => this.setError(error, "Cannot sign out"));
     },
   },
   computed: {
