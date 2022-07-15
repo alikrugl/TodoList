@@ -1,8 +1,7 @@
 <template>
   <div>
-    <div class="sign-out float-right">
-      <label @click="signOut">Sign out</label>
-    </div>
+    <AddTodoItem />
+    <FilterTodoItems />
     <h3>Todos</h3>
     <div class="legend">
       <span>Double click to mark as complete.</span>
@@ -30,9 +29,12 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import AddTodoItem from "@/components/AddTodoItem";
+import FilterTodoItems from "@/components/FilterTodoItems";
 
 export default {
   name: "TodoItems",
+  components: { AddTodoItem, FilterTodoItems },
   methods: {
     ...mapActions(["fetchTodos", "deleteTodo", "updateTodo"]),
     onDoubleClick(currentTodo) {
@@ -52,16 +54,6 @@ export default {
       };
       this.updateTodo(updatedTodo);
       event.preventDefault();
-    },
-    signOut() {
-      this.secured
-        .get("/logout")
-        .then(() => {
-          delete localStorage.csrf;
-          delete localStorage.signedIn;
-          this.$router.replace("/signin");
-        })
-        .catch((error) => this.setError(error, "Cannot sign out"));
     },
   },
   computed: {

@@ -1,11 +1,12 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Todo App</router-link> |
-      <router-link to="/signin">Sign In</router-link>
-    </div>
     <div class="container">
-      <h1>Todo List Manager</h1>
+      <div style="display: inline-block; float: right">
+        <router-link to="/signin">Sign In</router-link> |
+        <router-link to="/signup">Sign Up</router-link> |
+        <label @click="signOut">Sign out</label>
+      </div>
+      <h1><a href="/">Todo List Manager</a></h1>
       <h6>Powered by: Vue 3 | Vuex 4 | Axios | Ruby on Rails 7 | PostgreSQL</h6>
       <router-view />
     </div>
@@ -15,6 +16,18 @@
 <script>
 export default {
   name: "App",
+  methods: {
+    signOut() {
+      this.secured
+        .get("/logout")
+        .then(() => {
+          delete localStorage.csrf;
+          delete localStorage.signedIn;
+          this.$router.replace("/signin");
+        })
+        .catch((error) => this.setError(error, "Cannot sign out"));
+    },
+  },
 };
 </script>
 
@@ -30,5 +43,18 @@ body {
   margin: auto;
   overflow: auto;
   padding: 0 2rem;
+}
+h1 {
+  text-decoration: none;
+  font-style: italic;
+  text-decoration-color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 a {
+  color: black;
 }
 </style>

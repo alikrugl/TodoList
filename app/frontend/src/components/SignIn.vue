@@ -23,7 +23,10 @@
     </div>
     <button type="submit" class="btn btn-primary mb-3">Sign in</button>
     <div>
-      <router-link to="/signup">Sign up</router-link>
+      <p>
+        Don't have an account?
+        <router-link to="/signup">Sign up</router-link>
+      </p>
     </div>
   </form>
 </template>
@@ -83,5 +86,49 @@ export default {
   max-width: 500px;
   padding: 10% 15px;
   margin: 0 auto;
+}
+p {
+  line-height: 1rem;
+}
+
+.card {
+  padding: 20px;
+}
+
+.form-group input {
+  margin-bottom: 20px;
+}
+
+.login-page {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+
+  h1 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+.error {
+  animation-name: errorShake;
+  animation-duration: 0.3s;
+}
+
+@keyframes errorShake {
+  0% {
+    transform: translateX(-25px);
+  }
+  25% {
+    transform: translateX(25px);
+  }
+  50% {
+    transform: translateX(-25px);
+  }
+  75% {
+    transform: translateX(25px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
 </style>

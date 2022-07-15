@@ -33,7 +33,10 @@
     </div>
     <button type="submit" class="btn btn-primary mb-3">Sign up</button>
     <div>
-      <router-link to="/signin">Sign in</router-link>
+      <p>
+        Already have an account?
+        <router-link to="/signin">Sign in</router-link>
+      </p>
     </div>
   </form>
 </template>
