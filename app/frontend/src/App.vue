@@ -1,10 +1,10 @@
 <template>
   <div id="app">
     <div class="container">
-      <div style="display: inline-block; float: right">
-        <router-link to="/signin">Sign In</router-link> |
-        <router-link to="/signup">Sign Up</router-link> |
-        <label @click="signOut">Sign out</label>
+      <div class="container" style="display: inline-block; float: right">
+        <router-link class="routerButton" to="/signin">Sign In</router-link>
+        <router-link class="routerButton" to="/signup">Sign Up</router-link>
+        <label class="routerButton" @click="signOut">Sign out</label>
       </div>
       <h1><a href="/">Todo List Manager</a></h1>
       <h6>Powered by: Vue 3 | Vuex 4 | Axios | Ruby on Rails 7 | PostgreSQL</h6>
@@ -56,5 +56,19 @@ a {
 
 h1 a {
   color: black;
+}
+
+.routerButton {
+  background-color: #41b883;
+  border: 1px solid #ccc;
+  color: black;
+  border-radius: 8px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
 }
 </style>
