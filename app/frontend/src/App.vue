@@ -1,27 +1,20 @@
 <template>
   <div id="app">
+    <div id="nav">
+      <router-link to="/">Todo App</router-link> |
+      <router-link to="/signin">Sign In</router-link>
+    </div>
     <div class="container">
       <h1>Todo List Manager</h1>
       <h6>Powered by: Vue 3 | Vuex 4 | Axios | Ruby on Rails 7 | PostgreSQL</h6>
-      <AddTodoItem />
-      <FilterTodoItems />
-      <TodoItems />
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import TodoItems from "@/components/TodoItems.vue";
-import AddTodoItem from "@/components/AddTodoItem.vue";
-import FilterTodoItems from "@/components/FilterTodoItems.vue";
-
 export default {
   name: "App",
-  components: {
-    TodoItems,
-    AddTodoItem,
-    FilterTodoItems,
-  },
 };
 </script>
 

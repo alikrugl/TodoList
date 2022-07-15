@@ -55,7 +55,11 @@ export default {
     ...mapGetters(["allTodos"]),
   },
   created() {
-    this.fetchTodos();
+    if (!localStorage.signedIn) {
+      this.$router.replace("/signin");
+    } else {
+      this.fetchTodos();
+    }
   },
 };
 </script>

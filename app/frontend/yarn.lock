@@ -1987,6 +1987,11 @@
   resolved "https://registry.npmmirror.com/@vue/devtools-api/-/devtools-api-6.2.0.tgz#e3dc98a0cce8e87292745e2d24c9ee8c274a023b"
   integrity sha512-pF1G4wky+hkifDiZSWn8xfuLOJI1ZXtuambpBEYaf7Xaf6zC/pM29rvAGpd3qaGXnr4BAXU1Pxz/VfvBGwexGA==
 
+"@vue/devtools-api@^6.1.4":
+  version "6.2.1"
+  resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.2.1.tgz#6f2948ff002ec46df01420dfeff91de16c5b4092"
+  integrity sha512-OEgAMeQXvCoJ+1x8WyQuVZzFo0wcyCmUR3baRVLmKBo1LmYZWMlRiXlux5jd0fqVJu6PfDbOrZItVqUEzLobeQ==
+
 "@vue/reactivity-transform@3.2.37":
   version "3.2.37"
   resolved "https://registry.npmmirror.com/@vue/reactivity-transform/-/reactivity-transform-3.2.37.tgz#0caa47c4344df4ae59f5a05dde2a8758829f8eca"
@@ -7655,6 +7660,11 @@ vary@~1.1.2:
   resolved "https://registry.npmmirror.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
+vue-axios@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/vue-axios/-/vue-axios-3.4.1.tgz#e092ec4060b42e941ea5059df9b8f09058c3eea9"
+  integrity sha512-8YZYUOQrBEJktxoQtrM4rr2LfVcDaWfJqv8MqtLlgLlkuBvCYKFSZSo6AXQ4YcCzdgccDqstmuaEh68lcH9xWA==
+
 vue-eslint-parser@^8.0.1:
   version "8.3.0"
   resolved "https://registry.npmmirror.com/vue-eslint-parser/-/vue-eslint-parser-8.3.0.tgz#5d31129a1b3dd89c0069ca0a1c88f970c360bd0d"
@@ -7681,6 +7691,13 @@ vue-loader@^17.0.0:
     chalk "^4.1.0"
     hash-sum "^2.0.0"
     loader-utils "^2.0.0"
+
+vue-router@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.1.2.tgz#ae08f63c9610afa6bff6743e8f128b7054d4c9f5"
+  integrity sha512-5BP1qXFncVRwgV/XnqzsKApdMjQPqWIpoUBdL1ynz8HyLxIX/UDAx7Ql2BjmA5CXT/p61JfZvkpiFWFpaqcfag==
+  dependencies:
+    "@vue/devtools-api" "^6.1.4"
 
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.3:
   version "4.1.3"

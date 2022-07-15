@@ -1,8 +1,9 @@
-import axios from "axios";
+import { securedAxiosInstance } from "@/backend/axios";
 const api_url = "http://localhost:3000/api/v1/todos";
 
 const state = {
   todos: [],
+  error: "",
 };
 
 const getters = {
@@ -14,32 +15,41 @@ const getters = {
             'updateTodo'
 */
 const actions = {
+  setError(error, text) {
+    this.error =
+      (error.response && error.response.data && error.response.data.error) ||
+      text;
+  },
   async fetchTodos({ commit }) {
-    const response = await axios.get(api_url);
+    const response = await securedAxiosInstance.get(api_url);
     commit("setTodos", response.data);
   },
   async addTodo({ commit }, title) {
-    const response = await axios.post(api_url, {
-      todo: {
-        title,
-        completed: false,
-      },
-    });
+    const response = await securedAxiosInstance
+      .post(api_url, {
+        todo: {
+          title,
+          completed: false,
+        },
+      })
+      .catch((error) => this.setError(error, "Cannot create ToDo"));
     commit("newTodo", response.data);
   },
   async deleteTodo({ commit }, id) {
-    await axios.delete(api_url + `/${id}`);
+    await securedAxiosInstance.delete(api_url + `/${id}`);
     commit("removeTodo", id);
   },
   async filterTodos({ commit }, event) {
     const limit = parseInt(
       event.target.options[event.target.options.selectedIndex].innerText
     );
-    const response = await axios.get(api_url + `?_limit=${limit}`);
+    const response = await securedAxiosInstance.get(
+      api_url + `?_limit=${limit}`
+    );
     commit("setTodos", response.data);
   },
   async updateTodo({ commit }, updatedTodo) {
-    const response = await axios.put(
+    const response = await securedAxiosInstance.put(
       api_url + `/${updatedTodo.id}`,
       updatedTodo
     );
