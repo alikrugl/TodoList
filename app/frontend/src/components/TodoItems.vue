@@ -1,5 +1,7 @@
 <template>
   <div>
+    <AddTodoItem />
+    <FilterTodoItems />
     <h3>Todos</h3>
     <div class="legend">
       <span>Double click to mark as complete.</span>
@@ -27,9 +29,12 @@
 </template>
 <script>
 import { mapGetters, mapActions } from "vuex";
+import AddTodoItem from "@/components/AddTodoItem";
+import FilterTodoItems from "@/components/FilterTodoItems";
 
 export default {
   name: "TodoItems",
+  components: { AddTodoItem, FilterTodoItems },
   methods: {
     ...mapActions(["fetchTodos", "deleteTodo", "updateTodo"]),
     onDoubleClick(currentTodo) {
@@ -55,7 +60,11 @@ export default {
     ...mapGetters(["allTodos"]),
   },
   created() {
-    this.fetchTodos();
+    if (!localStorage.signedIn) {
+      this.$router.replace("/signin");
+    } else {
+      this.fetchTodos();
+    }
   },
 };
 </script>

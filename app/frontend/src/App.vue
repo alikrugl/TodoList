@@ -1,26 +1,32 @@
 <template>
   <div id="app">
     <div class="container">
-      <h1>Todo List Manager</h1>
+      <div class="container" style="display: inline-block; float: right">
+        <router-link class="routerButton" to="/signin">Sign In</router-link>
+        <router-link class="routerButton" to="/signup">Sign Up</router-link>
+        <label class="routerButton" @click="signOut">Sign out</label>
+      </div>
+      <h1><a href="/">Todo List Manager</a></h1>
       <h6>Powered by: Vue 3 | Vuex 4 | Axios | Ruby on Rails 7 | PostgreSQL</h6>
-      <AddTodoItem />
-      <FilterTodoItems />
-      <TodoItems />
+      <router-view />
     </div>
   </div>
 </template>
 
 <script>
-import TodoItems from "@/components/TodoItems.vue";
-import AddTodoItem from "@/components/AddTodoItem.vue";
-import FilterTodoItems from "@/components/FilterTodoItems.vue";
-
 export default {
   name: "App",
-  components: {
-    TodoItems,
-    AddTodoItem,
-    FilterTodoItems,
+  methods: {
+    signOut() {
+      this.secured
+        .get("/logout")
+        .then(() => {
+          delete localStorage.csrf;
+          delete localStorage.signedIn;
+          this.$router.replace("/signin");
+        })
+        .catch((error) => this.setError(error, "Cannot sign out"));
+    },
   },
 };
 </script>
@@ -37,5 +43,32 @@ body {
   margin: auto;
   overflow: auto;
   padding: 0 2rem;
+}
+h1 {
+  text-decoration: none;
+  font-style: italic;
+  text-decoration-color: black;
+}
+
+a {
+  text-decoration: none;
+}
+
+h1 a {
+  color: black;
+}
+
+.routerButton {
+  background-color: #41b883;
+  border: 1px solid #ccc;
+  color: black;
+  border-radius: 8px;
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
 }
 </style>
