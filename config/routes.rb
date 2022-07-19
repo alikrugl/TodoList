@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     namespace :users do
-      resources :todos, only: [:index]
+      get '/:user_id/todos', to: 'todos#index'
     end
     resources :users, only: [:index]
   end

@@ -8,7 +8,7 @@ module Admin
     def index
       @users = User.all
 
-      render json: @users.as_json(only: %i[id email role])
+      render json: @users.as_json(only: %i[id email role created_at])
     end
 
     def token_claims
