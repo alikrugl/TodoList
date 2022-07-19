@@ -74,20 +74,26 @@ export default {
         this.signupFailed(response);
         return;
       }
-      localStorage.csrf = response.data.csrf;
-      localStorage.signedIn = true;
-      this.error = "";
-      this.$router.replace("/");
+      this.plain
+        .get("/user_info")
+        .then((infoResponse) => {
+          this.$store.commit("setCurrentUser", {
+            currentUser: infoResponse.data,
+            csrf: response.data.csrf,
+          });
+          this.error = "";
+          this.$router.replace("/");
+        })
+        .catch((error) => this.signinFailed(error));
     },
     signupFailed(error) {
       this.error =
         (error.response && error.response.data && error.response.data.error) ||
         "Something went wrong";
-      delete localStorage.csrf;
-      delete localStorage.signedIn;
+      this.$store.commit("unsetCurrentUser");
     },
     checkSignedIn() {
-      if (localStorage.signedIn) {
+      if (this.$store.state.signedIn) {
         this.$router.replace("/");
       }
     },

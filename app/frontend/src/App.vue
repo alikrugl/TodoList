@@ -21,8 +21,7 @@ export default {
       this.secured
         .get("/logout")
         .then(() => {
-          delete localStorage.csrf;
-          delete localStorage.signedIn;
+          this.$store.commit("unsetCurrentUser");
           this.$router.replace("/signin");
         })
         .catch((error) => this.setError(error, "Cannot sign out"));

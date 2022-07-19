@@ -15,24 +15,17 @@ const getters = {
             'updateTodo'
 */
 const actions = {
-  setError(error, text) {
-    this.error =
-      (error.response && error.response.data && error.response.data.error) ||
-      text;
-  },
   async fetchTodos({ commit }) {
     const response = await securedAxiosInstance.get(api_url);
     commit("setTodos", response.data);
   },
   async addTodo({ commit }, title) {
-    const response = await securedAxiosInstance
-      .post(api_url, {
-        todo: {
-          title,
-          completed: false,
-        },
-      })
-      .catch((error) => this.setError(error, "Cannot create ToDo"));
+    const response = await securedAxiosInstance.post(api_url, {
+      todo: {
+        title,
+        completed: false,
+      },
+    });
     commit("newTodo", response.data);
   },
   async deleteTodo({ commit }, id) {
