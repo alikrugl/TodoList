@@ -1,6 +1,14 @@
 <template>
   <div class="users">
-    <div class="alert alert-danger" v-if="error">{{ error }}</div>
+    <div class="alert error" v-if="error">
+      <input type="checkbox" id="alert1" />
+      <label class="close" title="close" for="alert1">
+        <i style="color: black" class="fa-solid fa-xmark"></i>
+      </label>
+      <p class="inner">
+        <strong>{{ error }}</strong>
+      </p>
+    </div>
     <h3>Users</h3>
     <br />
     <table class="table" id="users">
@@ -18,10 +26,12 @@
           <th>{{ user.id }}</th>
           <td>{{ user.email }}</td>
           <td>{{ user.role }}</td>
-          <td>{{ user.created_at }}</td>
-          <td v-if="showTodosLink()">
+          <td>
+            {{ formatTime(user.created_at) }}
+          </td>
+          <td id="centered" v-if="showTodosLink()">
             <router-link :to="`/admin/users/${user.id}/todos`">
-              <i class="fa-solid fa-list"></i>
+              <i style="color: black" class="fa-solid fa-list-ul"></i>
             </router-link>
           </td>
         </tr>
@@ -31,6 +41,7 @@
 </template>
 
 <script>
+import moment from "moment";
 export default {
   name: "UsersList",
   data() {
@@ -65,10 +76,18 @@ export default {
     showTodosLink() {
       return this.$store.getters.isAdmin;
     },
+    formatTime(time_string) {
+      return moment(String(time_string)).format(`DD/MM/YYYY hh:mm:ss`);
+    },
   },
 };
 </script>
 <style>
+#centered {
+  text-align: center;
+  vertical-align: middle;
+}
+
 #users {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
@@ -95,5 +114,69 @@ export default {
   text-align: left;
   background-color: #41b883;
   color: white;
+}
+
+.alert .inner {
+  display: block;
+  padding: 6px;
+  margin: 6px;
+  border-radius: 3px;
+  border: 1px solid rgb(180, 180, 180);
+  background-color: rgb(212, 212, 212);
+}
+
+.alert .close {
+  float: right;
+  margin: 6px 20px 0px 0px;
+  cursor: pointer;
+}
+
+.alert .inner,
+.alert .close {
+  color: rgb(88, 88, 88);
+}
+
+.alert input {
+  display: none;
+}
+
+.alert input:checked ~ * {
+  animation-name: dismiss, hide;
+  animation-duration: 300ms;
+  animation-iteration-count: 1;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-delay: 0s, 100ms;
+}
+
+.alert.error .inner {
+  border: 1px solid rgb(238, 211, 215);
+  background-color: rgb(242, 222, 222);
+}
+.alert.error .inner,
+.alert.error .close {
+  color: rgb(185, 74, 72);
+}
+@keyframes dismiss {
+  0% {
+    opacity: 1;
+  }
+  90%,
+  100% {
+    opacity: 0;
+    font-size: 0.1px;
+    transform: scale(0);
+  }
+}
+
+@keyframes hide {
+  100% {
+    height: 0px;
+    width: 0px;
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+  }
 }
 </style>

@@ -1,9 +1,17 @@
 <template>
   <div class="users">
-    <div class="alert alert-danger" v-if="error">{{ error }}</div>
+    <div class="alert error" v-if="error">
+      <input type="checkbox" id="alert1" />
+      <label class="close" title="close" for="alert1">
+        <i style="color: black" class="fa-solid fa-xmark"></i>
+      </label>
+      <p class="inner">
+        <strong>{{ error }}</strong>
+      </p>
+    </div>
     <h3>User Todos</h3>
     <br />
-    <table class="table">
+    <table class="table" id="user_todos">
       <thead>
         <tr>
           <th>ID</th>
@@ -14,7 +22,7 @@
       <tbody>
         <tr v-for="todo in todos" :key="todo.id" :todo="todo">
           <th>{{ todo.id }}</th>
-          <th>{{ todo.user_id }}</th>
+          <td>{{ todo.user_id }}</td>
           <td>{{ todo.title }}</td>
         </tr>
       </tbody>
@@ -54,3 +62,29 @@ export default {
   },
 };
 </script>
+<style>
+#user_todos {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#user_todos td,
+#user_todos th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#user_todos tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#user_todos tr:hover {
+  background-color: #ddd;
+}
+
+#user_todos th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #41b883;
+  color: white;
+}
+</style>

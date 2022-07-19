@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
                           secure: Rails.env.production?)
       render json: { csrf: tokens[:csrf] }
     else
-      not_authorized
+      not_found
     end
   end
 

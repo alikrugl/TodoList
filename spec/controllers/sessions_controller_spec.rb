@@ -16,7 +16,7 @@ RSpec.describe SessionsController, type: :controller do
 
     it 'returns unauthorized for invalid params' do
       post :login, params: { email: user.email, password: 'incorrect' }
-      expect(response).to have_http_status(401)
+      expect(response).to have_http_status(404)
     end
   end
 end
