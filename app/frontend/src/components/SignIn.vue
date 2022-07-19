@@ -36,6 +36,10 @@
         Don't have an account?
         <router-link to="/signup">Sign up</router-link>
       </p>
+      <p>
+        Forgot your password?
+        <router-link to="/forgot_password">Reset password</router-link>
+      </p>
     </div>
   </form>
 </template>
