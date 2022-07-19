@@ -3,18 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
-  describe 'POST #create' do
-    let(:password) { FFaker::Internet.password }
-    let(:user_params) { { email: FFaker::Internet.email, password:, password_confirmation: password } }
+  describe 'GET #user_info' do
+    let!(:user) { create(:user) }
+    before(:each) { sign_in_as(user) }
 
-    it 'returns http success and create new user' do
-      expect do
-        post :create, params: user_params
-      end.to change(User, :count).by(1)
-
-      expect(response).to have_http_status(:success)
-      expect(response_json.keys).to eq ['csrf']
-      expect(response.cookies[JWTSessions.access_cookie]).to be_present
+    it 'returns a success response' do
+      get :user_info
+      expect(response).to be_successful
+      expect(response_json).to eq user.as_json(only: %i[id email role])
     end
   end
 end

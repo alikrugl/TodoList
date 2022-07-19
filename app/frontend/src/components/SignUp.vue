@@ -1,6 +1,16 @@
 <template>
+  <div class="alert error" v-if="error">
+    <input type="checkbox" id="alert1" />
+    <label class="close" title="close" for="alert1">
+      <i style="color: black" class="fa-solid fa-xmark"></i>
+    </label>
+    <p class="inner">
+      <strong>{{ error }}</strong>
+    </p>
+  </div>
+  <h3>Sign Up</h3>
+  <p>Please fill in this form to create an account.</p>
   <form class="form-signup" @submit.prevent="signup">
-    <div class="alert alert-danger" v-if="error">{{ error }}</div>
     <div class="form-group">
       <label for="email">Email address</label>
       <input
@@ -31,7 +41,7 @@
         placeholder="Password Confirmation"
       />
     </div>
-    <button type="submit" class="btn btn-primary mb-3">Sign up</button>
+    <button type="submit" class="signupbtn">Sign up</button>
     <div>
       <p>
         Already have an account?
@@ -74,20 +84,26 @@ export default {
         this.signupFailed(response);
         return;
       }
-      localStorage.csrf = response.data.csrf;
-      localStorage.signedIn = true;
-      this.error = "";
-      this.$router.replace("/");
+      this.plain
+        .get("/user_info")
+        .then((infoResponse) => {
+          this.$store.commit("setCurrentUser", {
+            currentUser: infoResponse.data,
+            csrf: response.data.csrf,
+          });
+          this.error = "";
+          this.$router.replace("/");
+        })
+        .catch((error) => this.signinFailed(error));
     },
     signupFailed(error) {
       this.error =
         (error.response && error.response.data && error.response.data.error) ||
         "Something went wrong";
-      delete localStorage.csrf;
-      delete localStorage.signedIn;
+      this.$store.commit("unsetCurrentUser");
     },
     checkSignedIn() {
-      if (localStorage.signedIn) {
+      if (this.$store.state.signedIn) {
         this.$router.replace("/");
       }
     },
@@ -99,7 +115,39 @@ export default {
 .form-signup {
   width: 70%;
   max-width: 500px;
-  padding: 10% 15px;
+  padding: 5% 15px;
   margin: 0 auto;
+}
+
+/* Full-width input fields */
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+button {
+  background-color: #04aa6d;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity: 1;
 }
 </style>

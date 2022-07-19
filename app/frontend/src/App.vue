@@ -2,9 +2,21 @@
   <div id="app">
     <div class="container">
       <div class="container" style="display: inline-block; float: right">
-        <router-link class="routerButton" to="/signin">Sign In</router-link>
-        <router-link class="routerButton" to="/signup">Sign Up</router-link>
-        <label class="routerButton" @click="signOut">Sign out</label>
+        <router-link
+          class="routerButton"
+          v-if="showAdminLink()"
+          to="/admin/users"
+          >Admin</router-link
+        >
+        <router-link class="routerButton" v-if="!signedIn()" to="/signin"
+          >Sign In</router-link
+        >
+        <router-link class="routerButton" v-if="!signedIn()" to="/signup"
+          >Sign Up</router-link
+        >
+        <label class="routerButton" v-if="signedIn()" @click="signOut"
+          >Sign out</label
+        >
       </div>
       <h1><a href="/">Todo List Manager</a></h1>
       <h6>Powered by: Vue 3 | Vuex 4 | Axios | Ruby on Rails 7 | PostgreSQL</h6>
@@ -17,15 +29,25 @@
 export default {
   name: "App",
   methods: {
+    signedIn() {
+      return this.$store.state.signedIn;
+    },
+    setError(error, text) {
+      this.error =
+        (error.response && error.response.data && error.response.data.error) ||
+        text;
+    },
     signOut() {
       this.secured
         .get("/logout")
         .then(() => {
-          delete localStorage.csrf;
-          delete localStorage.signedIn;
+          this.$store.commit("unsetCurrentUser");
           this.$router.replace("/signin");
         })
         .catch((error) => this.setError(error, "Cannot sign out"));
+    },
+    showAdminLink() {
+      return this.$store.getters.isAdmin || this.$store.getters.isManager;
     },
   },
 };

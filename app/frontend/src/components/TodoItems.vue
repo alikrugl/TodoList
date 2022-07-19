@@ -60,7 +60,7 @@ export default {
     ...mapGetters(["allTodos"]),
   },
   created() {
-    if (!localStorage.signedIn) {
+    if (!this.$store.state.signedIn) {
       this.$router.replace("/signin");
     } else {
       this.fetchTodos();

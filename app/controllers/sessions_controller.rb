@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
       JWTSessions.access_exp_time = 8.hours.to_i
       JWTSessions.refresh_exp_time = 1.week.to_i
 
-      payload = { user_id: user.id }
+      payload = { user_id: user.id, aud: [user.role] }
       session = JWTSessions::Session.new(payload:, refresh_by_access_allowed: true)
       tokens = session.login
 
