@@ -17,6 +17,13 @@ Rails.application.routes.draw do
     namespace :users do
       get '/:user_id/todos', to: 'todos#index'
     end
-    resources :users, only: [:index]
+    resources :users, only: %i[index show update]
+  end
+
+  resources :password_resets, only: [:create] do
+    collection do
+      get ':token', action: :edit, as: :edit
+      patch ':token', action: :update
+    end
   end
 end

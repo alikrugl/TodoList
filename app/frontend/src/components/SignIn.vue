@@ -36,6 +36,10 @@
         Don't have an account?
         <router-link to="/signup">Sign up</router-link>
       </p>
+      <p>
+        Forgot your password?
+        <router-link to="/forgot_password">Reset password</router-link>
+      </p>
     </div>
   </form>
 </template>
@@ -106,22 +110,8 @@ p {
   line-height: 1rem;
 }
 
-.card {
-  padding: 20px;
-}
-
 .form-group input {
   margin-bottom: 20px;
-}
-
-.login-page {
-  align-items: center;
-  display: flex;
-  height: 100vh;
-
-  h1 {
-    margin-bottom: 1.5rem;
-  }
 }
 
 .error {

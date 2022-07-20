@@ -28,6 +28,9 @@ export default createStore({
     },
   },
   getters: {
+    currentUserId(state) {
+      return state.currentUser && state.currentUser.id;
+    },
     isAdmin(state) {
       return state.currentUser && state.currentUser.role === "admin";
     },

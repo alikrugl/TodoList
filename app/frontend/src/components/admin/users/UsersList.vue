@@ -24,7 +24,14 @@
       <tbody>
         <tr v-for="user in users" :key="user.id" :user="user">
           <th>{{ user.id }}</th>
-          <td>{{ user.email }}</td>
+          <td td v-if="showUsersLink(user)">
+            <router-link :to="`/admin/users/${user.id}`">
+              {{ user.email }}
+            </router-link>
+          </td>
+          <td td v-else>
+            {{ user.email }}
+          </td>
           <td>{{ user.role }}</td>
           <td>
             {{ formatTime(user.created_at) }}
@@ -78,6 +85,12 @@ export default {
     },
     formatTime(time_string) {
       return moment(String(time_string)).format(`DD/MM/YYYY hh:mm:ss`);
+    },
+    showUsersLink(user) {
+      return (
+        this.$store.getters.isAdmin &&
+        this.$store.getters.currentUserId !== user.id
+      );
     },
   },
 };
@@ -156,6 +169,15 @@ export default {
 .alert.error .inner,
 .alert.error .close {
   color: rgb(185, 74, 72);
+}
+.alert.info .inner {
+  border: 1px solid rgb(251, 238, 213);
+  background-color: rgb(252, 248, 227);
+}
+
+.alert.info .inner,
+.alert.warning .close {
+  color: rgb(192, 152, 83);
 }
 @keyframes dismiss {
   0% {

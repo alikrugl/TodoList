@@ -4,6 +4,9 @@ import Signup from "@/components/SignUp";
 import TodoItems from "@/components/TodoItems";
 import UsersList from "@/components/admin/users/UsersList";
 import UserTodoItems from "@/components/admin/users/todos/UserTodoItems";
+import ForgotPassword from "@/components/ForgotPassword";
+import ResetPassword from "@/components/ResetPassword";
+import UserEdit from "@/components/admin/users/Edit";
 
 const routes = [
   {
@@ -30,6 +33,21 @@ const routes = [
     path: "/admin/users/:id/todos",
     name: "UserTodoItems",
     component: UserTodoItems,
+  },
+  {
+    path: "/forgot_password",
+    name: "ForgotPassword",
+    component: ForgotPassword,
+  },
+  {
+    path: "/password_resets/:token",
+    name: "ResetPassword",
+    component: ResetPassword,
+  },
+  {
+    path: "/admin/users/:id",
+    name: "UserEdit",
+    component: UserEdit,
   },
 ];
 

@@ -27,6 +27,9 @@
         </tr>
       </tbody>
     </table>
+    <div>
+      <router-link to="/admin/users">Users</router-link>
+    </div>
   </div>
 </template>
 
