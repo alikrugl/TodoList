@@ -80,3 +80,12 @@ export default {
   },
 };
 </script>
+<style>
+select {
+  width: 30%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+}
+</style>

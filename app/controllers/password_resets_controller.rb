@@ -2,7 +2,6 @@
 
 class PasswordResetsController < ApplicationController
   before_action :set_user, only: %i[edit update]
-  KEYS = %i[password password_confirmation].freeze
 
   def create
     user = User.find_by(email: params[:email])
@@ -28,7 +27,7 @@ class PasswordResetsController < ApplicationController
   private
 
   def password_params
-    params.tap { |p| p.require(KEYS) }.permit(*KEYS)
+    params.permit(:password, :password_confirmation)
   end
 
   def set_user

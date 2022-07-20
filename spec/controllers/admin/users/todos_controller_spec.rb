@@ -6,7 +6,7 @@ RSpec.describe Admin::Users::TodosController, type: :controller do
   let(:user) { create(:user) }
   let(:manager) { create(:user, role: :manager) }
   let(:admin) { create(:user, role: :admin) }
-  let!(:todo) { create(:todo, user: user) }
+  let!(:todo) { create(:todo, user:) }
   let!(:todo2) { create(:todo, user: manager) }
 
   describe 'GET #index' do

@@ -170,6 +170,15 @@ export default {
 .alert.error .close {
   color: rgb(185, 74, 72);
 }
+.alert.info .inner {
+  border: 1px solid rgb(251, 238, 213);
+  background-color: rgb(252, 248, 227);
+}
+
+.alert.info .inner,
+.alert.warning .close {
+  color: rgb(192, 152, 83);
+}
 @keyframes dismiss {
   0% {
     opacity: 1;

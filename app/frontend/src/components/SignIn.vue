@@ -110,22 +110,8 @@ p {
   line-height: 1rem;
 }
 
-.card {
-  padding: 20px;
-}
-
 .form-group input {
   margin-bottom: 20px;
-}
-
-.login-page {
-  align-items: center;
-  display: flex;
-  height: 100vh;
-
-  h1 {
-    margin-bottom: 1.5rem;
-  }
 }
 
 .error {

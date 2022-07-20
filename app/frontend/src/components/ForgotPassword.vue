@@ -1,7 +1,23 @@
 <template>
   <form class="form-app form-forgot-password" @submit.prevent="submit">
-    <div class="alert alert-info" v-if="notice">{{ notice }}</div>
-    <div class="alert alert-danger" v-if="error">{{ error }}</div>
+    <div class="alert info" v-if="notice">
+      <input type="checkbox" id="alert1" />
+      <label class="close" title="close" for="alert1">
+        <i style="color: black" class="fa-solid fa-xmark"></i>
+      </label>
+      <p class="inner">
+        <strong>{{ notice }}</strong>
+      </p>
+    </div>
+    <div class="alert error" v-if="error">
+      <input type="checkbox" id="alert1" />
+      <label class="close" title="close" for="alert1">
+        <i style="color: black" class="fa-solid fa-xmark"></i>
+      </label>
+      <p class="inner">
+        <strong>{{ error }}</strong>
+      </p>
+    </div>
     <div class="form-group">
       <label for="email">Email address</label>
       <input

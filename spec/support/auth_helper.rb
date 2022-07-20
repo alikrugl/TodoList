@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-
 # A module that is used to sign in and sign out a user.
 module AuthHelper
   def sign_in_as(user)

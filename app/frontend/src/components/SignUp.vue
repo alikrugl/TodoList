@@ -122,7 +122,7 @@ export default {
 /* Full-width input fields */
 input[type="email"],
 input[type="password"] {
-  width: 100%;
+  width: 94%;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
