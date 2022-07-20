@@ -54,7 +54,7 @@ module Api
 
       # Only allow a list of trusted parameters through.
       def todo_params
-        params.require(:todo).permit(:id, :title, :completed, :_limit)
+        params.require(:todo).permit(:title, :completed, :_limit)
       end
     end
   end

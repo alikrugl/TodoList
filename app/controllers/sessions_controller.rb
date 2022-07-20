@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   def login
     user = User.find_by!(email: params[:email])
     if user.authenticate(params[:password])
-      JWTSessions.access_exp_time = 1.minute.to_i
+      JWTSessions.access_exp_time = 8.hours.to_i
       JWTSessions.refresh_exp_time = 1.week.to_i
 
       payload = { user_id: user.id, aud: [user.role] }
@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    session = JWTSessions::Session.new(payload:)
+    session = JWTSessions::Session.new(payload:, namespace: "user_#{payload['user_id']}")
     session.flush_by_access_payload
     render json: :ok
   end

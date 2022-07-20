@@ -7,6 +7,7 @@ class ApplicationController < ActionController::API
   rescue_from ActiveRecord::RecordNotFound, with: :not_found
   rescue_from JWTSessions::Errors::Unauthorized, with: :not_authorized
   rescue_from JWTSessions::Errors::ClaimsVerification, with: :forbidden
+  rescue_from JWTSessions::Errors::Expired, with: :not_authorized
   rescue_from ResetPasswordError, with: :not_authorized
 
   private
