@@ -5,11 +5,11 @@ services:
     build: .
     depends_on:
       - database
+      - redis
     ports:
       - "3000:3000"
     volumes:
       - .:/app
-      - gem_cache:/usr/local/bundle/gems
     env_file: .env
     environment:
       RAILS_ENV: development
@@ -30,7 +30,9 @@ services:
       - ./app/frontend:/frontend
       - front_node_modules:/frontend/node_modules
 
+  redis:
+      image: 'redis:5'
+
 volumes:
-  gem_cache:
   db_data:
   front_node_modules:

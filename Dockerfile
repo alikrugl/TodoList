@@ -7,6 +7,7 @@ COPY . /app/
 
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
+RUN gem install bundler:2.3.16
 RUN bundle install
 
 ENTRYPOINT ["./entrypoints/docker-entrypoint.sh"]
