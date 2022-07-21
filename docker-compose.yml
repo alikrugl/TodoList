@@ -15,6 +15,7 @@ services:
       RAILS_ENV: development
       DATABASE_USER: postgres
       DATABASE_HOST: database
+      REDIS_URL: redis://redis:6379/0
       
 
   database:
