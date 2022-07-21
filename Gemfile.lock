@@ -72,7 +72,11 @@ GEM
     bcrypt (3.1.18)
     bootsnap (1.12.0)
       msgpack (~> 1.2)
+    brakeman (5.2.3)
     builder (3.2.4)
+    bundler-audit (0.9.1)
+      bundler (>= 1.2.0, < 3)
+      thor (~> 1.0)
     coderay (1.1.3)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
@@ -200,6 +204,8 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.11.0)
+    rspec_junit_formatter (0.5.1)
+      rspec-core (>= 2, < 4, != 2.12.0)
     rubocop (1.31.2)
       json (~> 2.3)
       parallel (~> 1.10)
@@ -213,6 +219,8 @@ GEM
     rubocop-ast (1.19.1)
       parser (>= 3.1.1.0)
     ruby-progressbar (1.11.0)
+    ruby_audit (2.1.0)
+      bundler-audit (~> 0.9.0)
     strscan (3.0.3)
     thor (1.2.1)
     timeout (0.3.0)
@@ -230,6 +238,8 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
+  brakeman
+  bundler-audit
   debug
   dotenv-rails
   factory_bot_rails
@@ -243,7 +253,9 @@ DEPENDENCIES
   rails (~> 7.0.3.1)
   redis (~> 4.0)
   rspec-rails
+  rspec_junit_formatter
   rubocop
+  ruby_audit
   tzinfo-data
 
 RUBY VERSION
