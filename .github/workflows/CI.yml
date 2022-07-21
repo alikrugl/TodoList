@@ -10,6 +10,9 @@ on:
   push:
     branches: [ "master" ]
 
+env:
+  RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+
 jobs:
   rspec:
     runs-on: ubuntu-latest
@@ -57,6 +60,6 @@ jobs:
       - name: Security audit dependencies
         run: bundle exec bundler-audit --update
       - name: Security audit application code
-        run: bundle exec brakeman -q -w2
+        run: bundle exec brakeman brakeman -q -w2
       - name: Lint Ruby files
         run: bundle exec rubocop --parallel
