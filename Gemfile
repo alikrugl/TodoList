@@ -45,13 +45,15 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   # Shim to load environment variables from .env into ENV in development.
   gem 'dotenv-rails'
-  # factory_bot_rails is a fixtures replacement with a straightforward definition syntax, support for multiple build strategies
+  # factory_bot_rails is a fixtures replacement with a straightforward definition syntax,
+  # support for multiple build strategies
   gem 'factory_bot_rails'
   # This gem is a port of Perl's Data::Faker library that generates fake data.
   gem 'ffaker'
   # Pry is a runtime developer console and IRB alternative with powerful introspection capabilities
   gem 'pry'
-  # rspec-rails brings the RSpec testing framework to Ruby on Rails as a drop-in alternative to its default testing framework, Minitest.
+  # rspec-rails brings the RSpec testing framework to Ruby on Rails as a drop-in alternative to its default testing
+  # framework, Minitest.
   gem 'rspec-rails'
 
   # Security tools

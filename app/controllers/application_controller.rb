@@ -35,4 +35,11 @@ class ApplicationController < ActionController::API
   def unprocessable_entity(exception)
     render json: { error: exception.record.errors.full_messages.join('. ') }, status: :unprocessable_entity
   end
+
+  def cookie_access_token(access_token)
+    response.set_cookie(JWTSessions.access_cookie,
+                        value: access_token,
+                        httponly: true,
+                        secure: Rails.env.production?)
+  end
 end

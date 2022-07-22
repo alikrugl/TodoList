@@ -6,17 +6,17 @@ AllCops:
     - 'script/**/*'
     - 'tmp/**/*'
 
-Bundler/DuplicatedGem:
+Bundler/GemComment:
   Enabled: true
 
-Bundler/GemComment:
+Layout/CaseIndentation:
+  EnforcedStyle: end
+
+Layout/ClassStructure:
   Enabled: true
 
 Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
-
-Layout/CaseIndentation:
-  EnforcedStyle: end
 
 Layout/FirstHashElementIndentation:
   Enabled: false
@@ -36,6 +36,10 @@ Layout/HashAlignment:
 
 Layout/EndAlignment:
   EnforcedStyleAlignWith: variable
+
+Layout/LineLength:
+  Enabled: true
+  Max: 120
 
 Naming/RescuedExceptionsVariableName:
   Enabled: true
@@ -60,7 +64,7 @@ Style/GuardClause:
   Enabled: false
 
 Style/IfUnlessModifier:
-  Enabled: false
+  Enabled: true
 
 Style/Lambda:
   Enabled: false
@@ -71,6 +75,18 @@ Style/RaiseArgs:
 Style/SignalException:
   Enabled: false
 
+Style/SingleLineBlockParams:
+  Enabled: false
+
+Style/FormatString:
+  Enabled: false
+
+Style/RedundantSelf:
+  Enabled: false
+
+Style/TrivialAccessors:
+  AllowPredicates: true
+
 Metrics/AbcSize:
   Max: 20
 
@@ -80,23 +96,9 @@ Metrics/ClassLength:
 Metrics/ModuleLength:
   Max: 100
 
-Layout/LineLength:
-  Enabled: false
-
 Metrics/MethodLength:
   Max: 15
 
-Style/SingleLineBlockParams:
-  Enabled: false
-
-Style/FormatString:
-  Enabled: false
-
-Style/WordArray:
-  Enabled: false
-
-Style/RedundantSelf:
-  Enabled: false
-
-Style/TrivialAccessors:
-  AllowPredicates: true
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*_spec.rb

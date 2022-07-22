@@ -8,8 +8,7 @@ class SessionsController < ApplicationController
   def login
     user = User.find_by!(email: params[:email])
     if user.authenticate(params[:password])
-      JWTSessions.access_exp_time = 8.hours.to_i
-      JWTSessions.refresh_exp_time = 1.week.to_i
+      set_session_expiration
 
       payload = { user_id: user.id, aud: [user.role] }
       session = JWTSessions::Session.new(payload:,
@@ -17,10 +16,7 @@ class SessionsController < ApplicationController
                                          namespace: "user_#{user.id}")
       tokens = session.login
 
-      response.set_cookie(JWTSessions.access_cookie,
-                          value: tokens[:access],
-                          httponly: true,
-                          secure: Rails.env.production?)
+      cookie_access_token(tokens[:access])
       render json: { csrf: tokens[:csrf] }
     else
       not_found
@@ -34,6 +30,11 @@ class SessionsController < ApplicationController
   end
 
   private
+
+  def set_session_expiration
+    JWTSessions.access_exp_time = 8.hours.to_i
+    JWTSessions.refresh_exp_time = 1.week.to_i
+  end
 
   def not_found
     render json: { error: 'Cannot find such email/password combination' }, status: :not_found
