@@ -5,6 +5,7 @@ AllCops:
     - 'config/**/*'
     - 'script/**/*'
     - 'tmp/**/*'
+    - 'vendor/**/*.rb'
 
 Bundler/GemComment:
   Enabled: true
