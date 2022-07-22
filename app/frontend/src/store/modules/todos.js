@@ -1,5 +1,6 @@
 import { securedAxiosInstance } from "@/backend/axios";
-const api_url = "http://localhost:3000/api/v1/todos";
+const api_url =
+  (process.env.BACKEND_URL || "http://localhost:3000") + "/api/v1/todos";
 
 const state = {
   todos: [],
