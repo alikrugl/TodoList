@@ -40,6 +40,7 @@ class ApplicationController < ActionController::API
     response.set_cookie(JWTSessions.access_cookie,
                         value: access_token,
                         httponly: true,
-                        secure: Rails.env.production?)
+                        secure: Rails.env.production?,
+                        same_site: 'None')
   end
 end
