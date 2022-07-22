@@ -17,11 +17,6 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: <%= ENV['DATABASE_USER'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  database: <%= ENV['DATABASE_NAME'] %>
-  port: <%= ENV['DATABASE_PORT'] || 5432 %>
-  host: <%= ENV['DATABASE_HOST'] %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -29,6 +24,10 @@ default: &default
 development:
   <<: *default
   database: todolist_development
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  port: <%= ENV['DATABASE_PORT'] || 5432 %>
+  host: <%= ENV['DATABASE_HOST'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -87,3 +86,4 @@ test:
 production:
   <<: *default
   database: todolist_pruduction
+  url: <%= ENV["DATABASE_URL"] %>
