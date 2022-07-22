@@ -1,5 +1,5 @@
 # Simple Todo List Application #
-#### ( Vue 3 | Vuex 4 | Axios | Ruby on Rails 7 | PostgreSQL | Docker )
+#### ( Vue 3 | Vuex 4 | Axios | Ruby on Rails 7 | PostgreSQL | Docker | Github Actions )
 
 ### Getting started
 
@@ -29,8 +29,9 @@ Move to http://localhost:8080/
 
 ### Docker
 
-Also this project includes docker setup
+Also this project includes docker setup ( .env file is required )
 
 ```
+$ docker-compose build
 $ docker-compose up
 ```
