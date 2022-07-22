@@ -1,7 +1,7 @@
 import axios from "axios";
 import store from "./../../store/index";
 
-const API_URL = process.env.BACKEND_URL || "http://localhost:3000";
+const API_URL = process.env.VUE_APP_BACKEND_URL || "http://localhost:3000";
 
 const securedAxiosInstance = axios.create({
   baseURL: API_URL,
