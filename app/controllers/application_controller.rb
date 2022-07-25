@@ -37,10 +37,11 @@ class ApplicationController < ActionController::API
   end
 
   def cookie_access_token(access_token)
+    same_site = Rails.env.production? ? 'None' : 'Lax'
     response.set_cookie(JWTSessions.access_cookie,
                         value: access_token,
                         httponly: true,
                         secure: Rails.env.production?,
-                        same_site: 'None')
+                        same_site:)
   end
 end
