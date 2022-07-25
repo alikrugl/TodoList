@@ -57,8 +57,20 @@ Rails.application.configure do
   config.active_job.queue_adapter = :async
   # config.active_job.queue_name_prefix = "TodoList_production"
 
-  config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.perform_caching = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { :host => 'https://todo-list-web-api.herokuapp.com/' }
 
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings =  {
+    :address            => 'smtp.gmail.com',
+    :port               => 587,
+    :domain             => 'gmail.com', #you can also use google.com
+    :authentication     => :plain,
+    :user_name          => Rails.application.credentials.mail_username,
+    :password           => Rails.application.credentials.mail_password
+  }
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
