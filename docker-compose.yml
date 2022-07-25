@@ -16,7 +16,6 @@ services:
       DATABASE_USER: postgres
       DATABASE_HOST: database
       REDIS_URL: redis://redis:6379/0
-      
 
   database:
     image: postgres:12.1

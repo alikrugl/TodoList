@@ -40,8 +40,7 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
 
   config.action_mailer.perform_caching = false
-  # TODO make possible to open it in a docker container
-  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.delivery_method = :letter_opener_web
   config.active_job.queue_adapter = :inline
 
   # Print deprecation notices to the Rails logger.
