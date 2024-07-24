@@ -17,7 +17,7 @@ Next, create and migrate the database:
 ```
 $ rails db:create db:migrate
 ```
-Install dependencies for your application:
+Install dependencies for your application(within app/frontend directory):
 ```
 $ yarn install
 ```
