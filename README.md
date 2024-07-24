@@ -1,5 +1,5 @@
 # Simple Todo List Application #
-## https://todo-list-web-front.herokuapp.com/
+## https://todo-list-web-front.herokuapp.com/ (not working anymore)
 #### ( Vue 3 | Vuex 4 | Axios | Ruby on Rails 7 | PostgreSQL | Docker | Github Actions )
 
 ### Getting started
